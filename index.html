@@ -14,6 +14,7 @@
    
    <body>
     <nav>
+      <!--NAVBAR---->
     <div class="nav-wrapper navbar-fixed">
       <a href="#!" class="brand-logo">Logo</a>
       <ul class="right hide-on-med-and-down">
@@ -23,7 +24,170 @@
       </ul>
     </div>
   </nav>
+  <!--NAVBAR-->
 
+<!--jelouworld-->
       <div class = "card-panel teal lighten-2"><h3>Hello World!</h3></div>
+ <!--jelouworld-->
+
+
+<!--Forms de inscripcion-->
+<div class="container">
+
+<div class="row">
+<div class="col s6">
+
+<form class="col s12">
+<div class="row">
+<div class="input-field col s6">
+  <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+  <label for="first_name">First Name</label>
+</div>
+<div class="input-field col s6">
+  <input id="last_name" type="text" class="validate">
+  <label for="last_name">Last Name</label>
+</div>
+</div>
+<div class="row">
+<div class="input-field col s12">
+  <input disabled value="I am not editable" id="disabled" type="text" class="validate">
+  <label for="disabled">Disabled</label>
+</div>
+</div>
+<div class="row">
+<div class="input-field col s12">
+  <input id="password" type="password" class="validate">
+  <label for="password">Password</label>
+</div>
+</div>
+<div class="row">
+<div class="input-field col s12">
+  <input id="email" type="email" class="validate">
+  <label for="email">Email</label>
+</div>
+</div>
+<div class="row">
+<div class="col s12">
+  This is an inline input field:
+  <div class="input-field inline">
+    <input id="email_inline" type="email" class="validate">
+    <label for="email_inline">Email</label>
+    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+  </div>
+</div>
+</div>
+</form>
+</div>
+<!--setermino-->
+
+<!--Columna derecha, demen servicio-->
+<div class="col s6">
+  <a data-target="modal1" class="waves-effect waves-light btn modal-trigger"><i class="material-icons right">cloud</i>Demen Servicio</a>
+</div>
+</div>
+<!--Seacabo-->
+
+<!--Modal-->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+     <div class="container">
+      <div class= "row">
+<div class= "col s6">
+  <p id="demo">Click the button to get your position.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<div id="mapholder"></div>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
+    +latlon+"&zoom=14&size=400x300&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU";
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+}
+//To use this code on your website, get a free API key from Google.
+//Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+</script>
+  </div>
+<div class="col s6">
+  <h1> PERROS</h1>
+  <div id="paypal-button"></div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+paypal.Button.render({
+  // Configure environment
+  env: 'sandbox',
+  client: {
+    sandbox: 'demo_sandbox_client_id',
+    production: 'demo_production_client_id'
+  },
+  // Customize button (optional)
+  locale: 'en_US',
+  style: {
+    size: 'small',
+    color: 'gold',
+    shape: 'pill',
+  },
+  // Set up a payment
+  payment: function (data, actions) {
+    return actions.payment.create({
+      transactions: [{
+        amount: {
+          total: '0.01',
+          currency: 'USD'
+        }
+      }]
+    });
+  },
+  // Execute the payment
+  onAuthorize: function (data, actions) {
+    return actions.payment.execute()
+      .then(function () {
+        // Show a confirmation message to the buyer
+        window.alert('Thank you for your purchase!');
+      });
+  }
+}, '#paypal-button');
+</script>
+
+  </div>
+      </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#modal1" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+  <!--Modal-->
+
+<script type="text/javascript" src="main.js"></script>
    </body>
 </html>
